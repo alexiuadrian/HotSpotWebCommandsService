@@ -1,7 +1,6 @@
 class Command < ApplicationRecord
   def run_command(command, flags)
-    folder = "../cmd_results/"
-    RunCommand.perform_async("cd #{folder} & " + create_command(command, flags))
+    RunCommand.perform_async(create_command(command, flags))
   end
 
   def create_command(command, flags)

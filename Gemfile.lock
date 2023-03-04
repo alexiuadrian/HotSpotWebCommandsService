@@ -49,8 +49,6 @@ GEM
     activejob (7.0.4.2)
       activesupport (= 7.0.4.2)
       globalid (>= 0.3.6)
-    activejob_backport (0.0.3)
-      activesupport (>= 4.0.0)
     activemodel (7.0.4.2)
       activesupport (= 7.0.4.2)
     activerecord (7.0.4.2)
@@ -222,7 +220,6 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
-  activejob_backport
   bootsnap
   capybara
   debug
