@@ -1,4 +1,7 @@
 class RepositoriesController < ApplicationController
+  # initialize HTTParty
+  include HTTParty
+
   def create_repository
     personal_token = params[:personal_token]
     repository_name = params[:repository_name]
