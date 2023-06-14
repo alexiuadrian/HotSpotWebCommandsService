@@ -32,7 +32,9 @@ class CommandsController < ApplicationController
 
     respond_to do |format|
       if @command.save
-        @command.run_command(@command, flags)
+        final_path = "~/Desktop/cmd_results/"
+        path = "./cmd_results/"
+        @command.run_command(@command, flags, final_path, path)
         format.html { redirect_to command_url(@command), notice: "Command was successfully created." }
         format.json { render :show, status: :created, location: @command }
       else

@@ -106,6 +106,21 @@ class RepositoriesController < ApplicationController
     end
   end
 
+  def upload_project_to_repository
+    local_path = "/Users/adialexiu/Desktop/"
+    personal_token = params[:personal_token]
+    repository_name = params[:repository_name]
+    application_name = params[:application_name]
+    user_name = params[:user_name]
+    commit_message = "Initial commit"
+
+    local_path_with_app = "#{local_path}cmd_results/#{application_name}"
+
+    if personal_token and repository_name and user_name
+      response = upload(local_path_with_app, local_path, personal_token, repository_name, user_name, commit_message)
+    end
+  end
+
   private
 
   def create(personal_token, repo_name, _user, description)
@@ -194,5 +209,34 @@ class RepositoriesController < ApplicationController
     }
     response = HTTParty.get(url, options)
     return response
+  end
+
+  def upload(local_path, path, personal_token, repo_name, user, commit_message)
+    url = "https://#{personal_token}@github.com/#{user}/#{repo_name}.git"
+    commands = []
+    # Command 1
+    command1 = "git init"
+    commands << command1
+    # Command 2
+    command2 = "git add ."
+    commands << command2
+    # Command 3
+    command3 = "git commit -m '#{commit_message}'"
+    commands << command3
+    # Command 4
+    command4 = "git branch -M main"
+    commands << command4
+    # Command 5
+    command5 = "git remote add origin #{url}"
+    commands << command5
+    # Command 6
+    command6 = "git push -u origin main"
+    commands << command6
+
+    run_commands(commands, local_path, path)
+  end
+
+  def run_commands(commands, final_path, path)
+    RunCommand.perform_async(commands, final_path, path)
   end
 end

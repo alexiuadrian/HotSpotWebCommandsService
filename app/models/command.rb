@@ -1,6 +1,7 @@
 class Command < ApplicationRecord
-  def run_command(command, flags)
-    RunCommand.perform_async(create_command(command, flags))
+  def run_command(command, flags, final_path, path)
+    command_string = create_command(command, flags)
+    RunCommand.perform_async([command_string], final_path, path)
   end
 
   def create_command(command, flags)
