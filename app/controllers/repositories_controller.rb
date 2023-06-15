@@ -234,10 +234,10 @@ class RepositoriesController < ApplicationController
     commands << command6
 
     timestamp = Time.now.to_i
-    run_commands(commands, local_path, path, timestamp)
+    run_commands(commands, local_path, path, nil)
   end
 
   def run_commands(commands, final_path, path, timestamp)
-    RunCommand.perform_async(commands, final_path, path, timestamp)
+    RunCommand.perform_async(commands, final_path, path, nil)
   end
 end
