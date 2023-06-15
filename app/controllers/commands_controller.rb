@@ -32,11 +32,14 @@ class CommandsController < ApplicationController
 
     respond_to do |format|
       if @command.save
-        final_path = "~/Desktop/cmd_results/"
+        final_path = "/Users/adialexiu/Desktop/cmd_results/"
         path = "./cmd_results/"
-        @command.run_command(@command, flags, final_path, path)
+        timestamp = Time.now.to_i
+        @command.run_command(@command, flags, final_path, final_path, timestamp)
+        created_path = final_path + timestamp.to_s + "/"
         format.html { redirect_to command_url(@command), notice: "Command was successfully created." }
-        format.json { render :show, status: :created, location: @command }
+        # send the created path to the json response
+        format.json { render json: { path: created_path } }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @command.errors, status: :unprocessable_entity }

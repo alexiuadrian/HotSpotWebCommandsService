@@ -233,10 +233,11 @@ class RepositoriesController < ApplicationController
     command6 = "git push -u origin main"
     commands << command6
 
-    run_commands(commands, local_path, path)
+    timestamp = Time.now.to_i
+    run_commands(commands, local_path, path, timestamp)
   end
 
-  def run_commands(commands, final_path, path)
-    RunCommand.perform_async(commands, final_path, path)
+  def run_commands(commands, final_path, path, timestamp)
+    RunCommand.perform_async(commands, final_path, path, timestamp)
   end
 end

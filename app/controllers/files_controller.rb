@@ -17,7 +17,7 @@ class FilesController < ApplicationController
     private
 
     def zip_folder(folder_path, zip_path, folder_app_name, app_name)
-        RunCommand.perform_async(["zip -r #{zip_path} \"#{app_name}\"/"], folder_path, folder_path)
+        RunCommand.perform_async(["zip -r #{zip_path} \"#{app_name}\"/"], folder_path, folder_path, nil)
     end
 
     def upload_to_azure(local_path, file_name)
