@@ -4,6 +4,8 @@
 if [ "$1" = './bin/rails' ] && [ "$2" = 'server' ]; then
     rails db:create
     rails db:migrate
+    # bundle exec sidekiq
 fi
 
 exec "${@}"
+

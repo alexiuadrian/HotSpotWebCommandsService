@@ -32,8 +32,8 @@ class CommandsController < ApplicationController
 
     respond_to do |format|
       if @command.save
-        final_path = "/Users/adialexiu/Desktop/cmd_results/"
-        path = "./cmd_results/"
+        final_path = "/home/"
+        path = "./home/"
         timestamp = Time.now.to_i
         @command.run_command(@command, flags, final_path, final_path, timestamp)
         created_path = final_path + timestamp.to_s + "/"

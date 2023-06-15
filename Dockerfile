@@ -11,7 +11,10 @@ RUN apt-get update && apt-get install -y \
     postgresql \
     tzdata \
     npm \
-    yarn
+    yarn \
+    redis-server \
+    zip \
+    git
 
 # Rails app lives here
 WORKDIR /rails

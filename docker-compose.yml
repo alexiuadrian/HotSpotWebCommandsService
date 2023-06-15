@@ -15,11 +15,13 @@ services:
     ports:
       - '5432:5432'
 
-  # redis:
-  #   image: redis
-  #   container_name: redis
-  #   ports:
-  #     - '6379:6379'
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    command: redis-server
+    ports:
+      - '6379:6379'
 
   commands_service:
     build: .
@@ -32,11 +34,14 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     volumes:
       - app-storage:/rails/storage
     depends_on:
       - db
-      # - redis
+      - redis
     ports:
       - '3000:3000'
 
