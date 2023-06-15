@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# If running the rails server then create or migrate the existing database
+if [ "$1" = './bin/rails' ] && [ "$2" = 'server' ]; then
+    rails db:create
+    rails db:migrate
+fi
+
+exec "${@}"
