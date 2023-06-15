@@ -114,7 +114,7 @@ class RepositoriesController < ApplicationController
     user_name = params[:user_name]
     commit_message = "Initial commit"
 
-    local_path_with_app = "#{local_path}cmd_results/#{application_name}"
+    local_path_with_app = "#{local_path}/#{application_name}"
 
     if personal_token and repository_name and user_name
       response = upload(local_path_with_app, local_path, personal_token, repository_name, user_name, commit_message)
@@ -234,10 +234,10 @@ class RepositoriesController < ApplicationController
     commands << command6
 
     timestamp = Time.now.to_i
-    run_commands(commands, local_path, path, nil)
+    run_commands(commands, local_path, path)
   end
 
-  def run_commands(commands, final_path, path, timestamp)
+  def run_commands(commands, final_path, path)
     RunCommand.perform_async(commands, final_path, path, nil)
   end
 end
