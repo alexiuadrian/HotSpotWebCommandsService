@@ -76,3 +76,6 @@ end
 
 gem 'sidekiq'
 gem 'httparty'
+
+gem 'azure-storage-blob'
+gem 'rubyzip'
