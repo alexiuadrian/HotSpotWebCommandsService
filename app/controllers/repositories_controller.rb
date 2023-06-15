@@ -107,7 +107,7 @@ class RepositoriesController < ApplicationController
   end
 
   def upload_project_to_repository
-    local_path = "/Users/adialexiu/Desktop/"
+    local_path = params[:local_path]
     personal_token = params[:personal_token]
     repository_name = params[:repository_name]
     application_name = params[:application_name]
