@@ -16,6 +16,21 @@ RUN apt-get update && apt-get install -y \
     zip \
     git
 
+# Install java
+RUN apt-get update && apt-get install -y \
+    openjdk-11-jdk
+
+RUN npm install -g create-react-app \
+    npm install -g @angular/cli 
+
+# Install dotnet
+RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && apt-get update \
+    && apt-get install -y apt-transport-https \
+    && apt-get update \
+    && apt-get install -y dotnet-sdk-6.0
+
 # Rails app lives here
 WORKDIR /rails
 
