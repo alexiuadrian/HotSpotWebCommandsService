@@ -1,8 +1,8 @@
 class RunCommand
   include Sidekiq::Worker
 
-  def perform(commands, final_path, path, timestamp)
-    if timestamp.nil?
+  def perform(commands, final_path, path, timestamp, is_zip)
+    if is_zip == "false"
       timestamp = Time.now.to_i
       file = File.open("#{path}#{timestamp}.sh", "w")
       file.write("cd #{final_path}")

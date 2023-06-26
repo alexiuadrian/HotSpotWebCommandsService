@@ -16,8 +16,8 @@ class FilesController < ApplicationController
 
     private
 
-    def zip_folder(folder_path, zip_path, folder_app_name, app_name)
-        RunCommand.perform_async(["zip -r #{zip_path} #{app_name}/"], folder_path, folder_path, nil)
+    def zip_folder(folder_path, zip_path, folder_app_name, app_name, timestamp)
+        RunCommand.perform_async(["zip -r #{zip_path} #{app_name}/"], folder_path, folder_path, timestamp, true)
     end
 
     def upload_to_azure(local_path, file_name)
@@ -34,10 +34,10 @@ class FilesController < ApplicationController
 
         # Zip the folder
         zip_file_path = "#{local_path}#{file_name}_#{timestamp}.zip"
-        zip_folder(local_path, zip_file_path, folder_path, file_name)
+        zip_folder(local_path, zip_file_path, folder_path, file_name, timestamp)
 
         # Wait for the zip to finish
-        sleep(5)
+        sleep(10)
 
         # Create a BlobService object
         blob_service = Azure::Storage::Blob::BlobService.create_from_connection_string(connection_string)
