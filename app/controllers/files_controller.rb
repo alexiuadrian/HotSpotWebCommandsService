@@ -23,7 +23,7 @@ class FilesController < ApplicationController
     def upload_to_azure(local_path, file_name)
         timestamp = Time.now.to_i
         # Set your Azure Blob Storage connection string
-        connection_string = 'DefaultEndpointsProtocol=https;AccountName=hotspotweb;AccountKey=1K2Rpcq2V3LZjVlFfTtvJt7mxiQ/XcKDMtrO1y0G/LOWu6607qUe+3hNeYuoFSsSIrzprCLB7yV7+AStVaXRFw==;EndpointSuffix=core.windows.net'
+        connection_string = 'DefaultEndpointsProtocol=https;AccountName=hotspotweb1;AccountKey=U70E9xwW3YhMPVT3fLND6haGv/3unxoTKuew2dsaLCdSUNk1XccBYUL3s/w8qhKk3me7atPVGoDD+ASt/VDNGg==;EndpointSuffix=core.windows.net'
 
         # Set the Azure Blob Storage container and blob names
         container_name = 'hotspotweb-applications'
