@@ -238,6 +238,6 @@ class RepositoriesController < ApplicationController
   end
 
   def run_commands(commands, final_path, path)
-    RunCommand.perform_async(commands, final_path, path, nil)
+    RunCommand.perform_async(commands, final_path, path, nil, false)
   end
 end

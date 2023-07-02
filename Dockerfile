@@ -6,22 +6,24 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     libffi-dev \
-    nodejs \
     postgresql-client \
     postgresql \
     tzdata \
-    npm \
-    yarn \
     redis-server \
     zip \
     git
+
+# Install nodejs 14
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
 
 # Install java
 RUN apt-get update && apt-get install -y \
     openjdk-11-jdk
 
 RUN npm install -g create-react-app \
-    npm install -g @angular/cli 
+    npm install -g @angular/cli  \
+    npm install -g @vue/cli
 
 # Install dotnet
 RUN wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb \

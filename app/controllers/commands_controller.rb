@@ -36,7 +36,7 @@ class CommandsController < ApplicationController
         path = "./home/"
         timestamp = Time.now.to_i
         @command.run_command(@command, flags, final_path, final_path, timestamp)
-        created_path = final_path + timestamp.to_s + "/"
+        created_path = final_path
         format.html { redirect_to command_url(@command), notice: "Command was successfully created." }
         # send the created path to the json response
         format.json { render json: { path: created_path } }
